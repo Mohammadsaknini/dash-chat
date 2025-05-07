@@ -12,8 +12,8 @@ package_name = package["name"].replace(" ", "_")
 setup(
     name=package_name,
     version=package["version"],
-    author=package["author"],
-    packages=[package_name.replace("-", "_")],
+    authors=package["authors"],
+    packages=["dash-chat".replace("-", "_")],
     include_package_data=True,
     license=package["license"],
     description=package.get("description", package_name),
@@ -31,6 +31,6 @@ setup(
         "Framework :: Dash",
     ],
     project_urls={
-        "Source Code": "https://github.com/gbolly/dash-chat",
+        "Source Code": "https://github.com/Mohammadsaknini/dash-chat",
     },
 )
