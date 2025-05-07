@@ -33,6 +33,7 @@ const MessageInput = ({
     customStyles = null,
     inputComponentStyles = null,
     showTyping = false,
+    showFileUpload = false,
     accept,
 }) => {
     const fileInputRef = useRef(null);
@@ -113,6 +114,7 @@ const MessageInput = ({
                     className="file-upload-button"
                     onClick={() => fileInputRef.current.click()}
                     data-testid="file-upload-button"
+                    style={{ display: showFileUpload ? "block" : "none" }}
                 >
                     <Paperclip size={20} />
                 </button>
@@ -181,6 +183,10 @@ MessageInput.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
     ]),
+    /**
+     * Show file upload button. Default is `false`.
+    */
+    showFileUpload: PropTypes.bool,
 };
 
 export default MessageInput;

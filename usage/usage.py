@@ -14,6 +14,7 @@ app.layout = html.Div(
             class_name="container",
             persistence=True,
             persistence_type="local",
+            show_file_upload=False,
         )
     ]
 )

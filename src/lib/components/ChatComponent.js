@@ -72,6 +72,7 @@ const ChatComponent = ({
     persistence = false,
     persistence_type: persistenceType = "local",
     supported_input_file_types : accept = "*/*",
+    show_file_upload : showFileUpload = true,
 }) => {
     const userBubbleStyle = { ...defaultUserBubbleStyle, ...userBubbleStyleProp };
     const assistantBubbleStyle = { ...defaultAssistantBubbleStyle, ...assistantBubbleStyleProp };
@@ -286,6 +287,7 @@ const ChatComponent = ({
                     showTyping={showTyping}
                     setAttachment={setAttachment}
                     accept={accept}
+                    showFileUpload={showFileUpload}
                 />
             </div>
         </div>
@@ -388,6 +390,10 @@ ChatComponent.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
     ]),
+    /**
+     * Show file upload button. Default is `false`.
+    */
+    show_file_upload: PropTypes.bool,
 };
 
 export default ChatComponent;
