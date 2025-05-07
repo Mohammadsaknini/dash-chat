@@ -47,15 +47,21 @@ class ChatComponent(Component):
 
     - messages (list of dicts; optional):
         An array of options. The list of chat messages. Each message
-        object should have:     - `role` (string): The message sender,
-        either \"user\" or \"assistant\".     - `content` (string): The
-        content of the message.
+        object should have:    - `role` (string): The message sender,
+        either \"user\" or \"assistant\".    - `content`: The content of
+        the message.
 
         `messages` is a list of dicts with keys:
 
         - role (a value equal to: "user", "assistant"; required)
 
-        - content (string; required)
+        - content (list of dicts; required)
+
+            `content` is a list of dicts with keys:
+
+            - type (a value equal to: "text", "attachment", "table", "graph"; required)
+
+            - props (dict; optional) | string | dict
 
     - new_message (dict; optional):
         Latest chat message that was appended to messages array.
@@ -65,6 +71,10 @@ class ChatComponent(Component):
 
     - persistence_type (a value equal to: "local", "session"; default "local"):
         Where persisted messages will be stored.
+
+    - supported_input_file_types (string | list of strings; default "*/*"):
+        String or array of file types to accept in the attachment file
+        input.
 
     - theme (string; default "light"):
         Theme for the chat interface. Default is \"light\". Use \"dark\"
@@ -102,7 +112,8 @@ class ChatComponent(Component):
         class_name=Component.UNDEFINED,
         persistence=Component.UNDEFINED,
         persistence_type=Component.UNDEFINED,
-        **kwargs,
+        supported_input_file_types=Component.UNDEFINED,
+        **kwargs
     ):
         self._prop_names = [
             "id",
@@ -118,6 +129,7 @@ class ChatComponent(Component):
             "new_message",
             "persistence",
             "persistence_type",
+            "supported_input_file_types",
             "theme",
             "typing_indicator",
             "user_bubble_style",
@@ -137,6 +149,7 @@ class ChatComponent(Component):
             "new_message",
             "persistence",
             "persistence_type",
+            "supported_input_file_types",
             "theme",
             "typing_indicator",
             "user_bubble_style",
