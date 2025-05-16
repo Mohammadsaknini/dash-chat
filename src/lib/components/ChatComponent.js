@@ -22,6 +22,7 @@ import MessageInput from "../../private/ChatMessageInput";
 import renderMessageContent from "../../private/renderers";
 import TypingIndicatorDots from "../../private/DotsIndicator";
 import TypingIndicatorSpinner from "../../private/SpinnerIndicator";
+import TemplateMessages from "../../private/ChatTemplateMessage";   
 
 import "../../styles/chatStyles.css";
 
@@ -72,6 +73,8 @@ const ChatComponent = ({
     persistence = false,
     persistence_type: persistenceType = "local",
     supported_input_file_types : accept = "*/*",
+    show_file_upload : showFileUpload = true,
+    template_messages: templateMessages = [],
 }) => {
     const userBubbleStyle = { ...defaultUserBubbleStyle, ...userBubbleStyleProp };
     const assistantBubbleStyle = { ...defaultAssistantBubbleStyle, ...assistantBubbleStyleProp };
@@ -160,10 +163,12 @@ const ChatComponent = ({
         });
     };
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (textOverride = null, attachmentOverride = undefined) => {
+        const currentMessage = textOverride !== null ? textOverride : currentMessage;
+        const attachment = attachmentOverride !== undefined ? attachmentOverride : attachment;
+        
         if (currentMessage.trim() || attachment) {
             let content;
-
             if (attachment) {
                 const base64File = await convertFileToBase64(attachment);
                 content = [
@@ -178,7 +183,6 @@ const ChatComponent = ({
             } else {
                 content = currentMessage.trim();
             }
-
             const newMessage = { role: "user", content, id: Date.now() };
             setLocalMessages((prevMessages) => {
                 const updatedMessages = [...prevMessages, newMessage];
@@ -275,6 +279,17 @@ const ChatComponent = ({
                 )}
                 <div ref={messageEndRef} />
             </div>
+            {/* Show Template Messages */}
+            {templateMessages.length > 0 && (
+                <div className="template-messages-container">
+                    <TemplateMessages
+                        messages={templateMessages}
+                        onClick={(message) => {
+                            handleSendMessage(message, null);
+                        }}
+                    />
+                </div>  
+            )}
             <div className="chat-input">
                 <MessageInput
                     onSend={handleSendMessage}
@@ -286,6 +301,7 @@ const ChatComponent = ({
                     showTyping={showTyping}
                     setAttachment={setAttachment}
                     accept={accept}
+                    showFileUpload={showFileUpload}
                 />
             </div>
         </div>
@@ -388,6 +404,15 @@ ChatComponent.propTypes = {
         PropTypes.string,
         PropTypes.arrayOf(PropTypes.string),
     ]),
+    /**
+     * Show file upload button. Default is `false`.
+    */
+    show_file_upload: PropTypes.bool,
+    /**
+     * Array of template messages to be displayed as clickable options.
+     * Each message should be a string.
+    */
+    template_messages: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default ChatComponent;
