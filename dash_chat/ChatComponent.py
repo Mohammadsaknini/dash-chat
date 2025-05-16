@@ -79,6 +79,10 @@ Keyword arguments:
     String or array of file types to accept in the attachment file
     input.
 
+- template_messages (list of strings; optional):
+    Array of template messages to be displayed as clickable options.
+    Each message should be a string.
+
 - theme (string; default "light"):
     Theme for the chat interface. Default is \"light\". Use \"dark\"
     for a dark mode appearance.
@@ -95,10 +99,10 @@ Keyword arguments:
     _namespace = 'dash_chat'
     _type = 'ChatComponent'
     @_explicitize_args
-    def __init__(self, id=Component.UNDEFINED, messages=Component.UNDEFINED, theme=Component.UNDEFINED, container_style=Component.UNDEFINED, typing_indicator=Component.UNDEFINED, new_message=Component.UNDEFINED, input_container_style=Component.UNDEFINED, input_text_style=Component.UNDEFINED, fill_height=Component.UNDEFINED, fill_width=Component.UNDEFINED, user_bubble_style=Component.UNDEFINED, assistant_bubble_style=Component.UNDEFINED, input_placeholder=Component.UNDEFINED, class_name=Component.UNDEFINED, persistence=Component.UNDEFINED, persistence_type=Component.UNDEFINED, supported_input_file_types=Component.UNDEFINED, show_file_upload=Component.UNDEFINED, **kwargs):
-        self._prop_names = ['id', 'assistant_bubble_style', 'class_name', 'container_style', 'fill_height', 'fill_width', 'input_container_style', 'input_placeholder', 'input_text_style', 'messages', 'new_message', 'persistence', 'persistence_type', 'show_file_upload', 'supported_input_file_types', 'theme', 'typing_indicator', 'user_bubble_style']
+    def __init__(self, id=Component.UNDEFINED, messages=Component.UNDEFINED, theme=Component.UNDEFINED, container_style=Component.UNDEFINED, typing_indicator=Component.UNDEFINED, new_message=Component.UNDEFINED, input_container_style=Component.UNDEFINED, input_text_style=Component.UNDEFINED, fill_height=Component.UNDEFINED, fill_width=Component.UNDEFINED, user_bubble_style=Component.UNDEFINED, assistant_bubble_style=Component.UNDEFINED, input_placeholder=Component.UNDEFINED, class_name=Component.UNDEFINED, persistence=Component.UNDEFINED, persistence_type=Component.UNDEFINED, supported_input_file_types=Component.UNDEFINED, show_file_upload=Component.UNDEFINED, template_messages=Component.UNDEFINED, **kwargs):
+        self._prop_names = ['id', 'assistant_bubble_style', 'class_name', 'container_style', 'fill_height', 'fill_width', 'input_container_style', 'input_placeholder', 'input_text_style', 'messages', 'new_message', 'persistence', 'persistence_type', 'show_file_upload', 'supported_input_file_types', 'template_messages', 'theme', 'typing_indicator', 'user_bubble_style']
         self._valid_wildcard_attributes =            []
-        self.available_properties = ['id', 'assistant_bubble_style', 'class_name', 'container_style', 'fill_height', 'fill_width', 'input_container_style', 'input_placeholder', 'input_text_style', 'messages', 'new_message', 'persistence', 'persistence_type', 'show_file_upload', 'supported_input_file_types', 'theme', 'typing_indicator', 'user_bubble_style']
+        self.available_properties = ['id', 'assistant_bubble_style', 'class_name', 'container_style', 'fill_height', 'fill_width', 'input_container_style', 'input_placeholder', 'input_text_style', 'messages', 'new_message', 'persistence', 'persistence_type', 'show_file_upload', 'supported_input_file_types', 'template_messages', 'theme', 'typing_indicator', 'user_bubble_style']
         self.available_wildcard_properties =            []
         _explicit_args = kwargs.pop('_explicit_args')
         _locals = locals()

@@ -1,6 +1,6 @@
 import time
 import dash
-from dash import callback, html, Input, Output, State
+from dash import callback, html, Input, Output, State, clientside_callback
 from dash_chat import ChatComponent
 
 
@@ -12,14 +12,11 @@ app.layout = html.Div(
             id="chat-component",
             messages=[],
             class_name="container",
-            persistence=True,
-            persistence_type="local",
             show_file_upload=False,
+            template_messages=["Test message"],
         )
     ]
 )
-
-
 @callback(
     Output("chat-component", "messages"),
     Input("chat-component", "new_message"),
