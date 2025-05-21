@@ -1,6 +1,6 @@
 {
-  "name": "dash-chat-custom",
-  "version": "0.2.3",
+  "name": "dash-chat",
+  "version": "1.0.1",
   "description": "A chat component for Dash",
   "repository": {
     "type": "git",

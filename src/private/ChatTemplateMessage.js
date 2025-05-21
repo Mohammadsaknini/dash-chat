@@ -12,10 +12,6 @@ const TemplateMessages = ({
     const handleClick = (message) => {
         if (onClick) {
             onClick(message);
-            const templateMessages = document.querySelector(".template-messages");
-            if (templateMessages) {
-                templateMessages.remove();
-            }
         }
     };
     return (

@@ -1,6 +1,6 @@
 import time
 import dash
-from dash import callback, html, Input, Output, State, clientside_callback
+from dash import callback, html, Input, Output, State
 from dash_chat import ChatComponent
 
 

@@ -199,6 +199,11 @@ const ChatComponent = ({
             setShowTyping(true);
             setCurrentMessage("");
             setAttachment("");
+
+            const templateMessages = document.querySelector(".template-messages");
+            if (templateMessages) {
+                templateMessages.remove();
+            }
         }
     };
 
